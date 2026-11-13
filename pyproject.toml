@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "papertrailscan"
+version = "0.1.0"
+description = "Epson network scanner discovery and scanning tools"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+papertrailscan = "papertrailscan.cli:main"
+papertrailscan-discover = "papertrailscan.discovery:main"
+papertrailscan-button = "papertrailscan.button_waiter:main"
+papertrailscan-button-scan = "papertrailscan.button_scan:main"
+papertrailscan-netpush = "papertrailscan.button_events:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["papertrailscan*"]
