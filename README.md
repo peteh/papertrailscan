@@ -54,8 +54,6 @@ Each button press scans one page. Another press within 10 seconds adds a page to
 
 The waiter opens a TCP connection to scanner port `1865`, sends the native wait-start request, and returns when the scanner reports a button press. Use `--timeout 30` to limit each wait or omit `--once` to wait again after each press.
 
-`papertrailscan-netpush` is a separate, experimental SLP/HTTP event listener for Epson NetScanMonitor models. On the ES-60W, SLP requests were observed and answered, but no callback arrived; it is not the correct button path for this model.
-
 Or run the modules directly from the repository:
 
 ```sh
@@ -63,7 +61,7 @@ python -m papertrailscan
 python -m papertrailscan.discovery --broadcast 192.168.2.255
 ```
 
-The reusable APIs are `papertrailscan.EpsonScanJob`, `papertrailscan.discovery.EpsonScannerDiscovery`, and `papertrailscan.button_waiter.EpsonButtonWaiter`. The separate `papertrailscan.button_events.EpsonButtonListener` handles experimental SLP/HTTP push-scan callbacks.
+The reusable APIs are `papertrailscan.EpsonScanJob`, `papertrailscan.discovery.EpsonScannerDiscovery`, and `papertrailscan.button_waiter.EpsonButtonWaiter`.
 
 ## Tests
 

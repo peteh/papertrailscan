@@ -15,7 +15,6 @@ papertrailscan = "papertrailscan.cli:main"
 papertrailscan-discover = "papertrailscan.discovery:main"
 papertrailscan-button = "papertrailscan.button_waiter:main"
 papertrailscan-button-scan = "papertrailscan.button_scan:main"
-papertrailscan-netpush = "papertrailscan.button_events:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
