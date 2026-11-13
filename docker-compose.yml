@@ -4,19 +4,19 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: papertrailscan
-#    network_mode: host
+    # network_mode: host
     environment:
       SCANNER_IP: ${SCANNER_IP:?set SCANNER_IP}
-      OUTPUT_DIR: ${OUTPUT_DIR:-/data/scans}
+      OUTPUT_DIR: /data/scans
       DPI: ${DPI:-300}
       FORMAT: ${FORMAT:-pdf}
       MODE: ${MODE:-Color}
       PAPER_SIZE: ${PAPER_SIZE:-A4}
       SOURCE: ${SOURCE:-ADF Front}
-      IDLE_TIMEOUT: ${IDLE_TIMEOUT:-10}
+      IDLE_TIMEOUT: ${IDLE_TIMEOUT:-20}
       RECONNECT_INTERVAL: ${RECONNECT_INTERVAL:-3}
       SCAN_TIMEOUT: ${SCAN_TIMEOUT:-120}
       VERBOSE: ${VERBOSE:-false}
     volumes:
-      - ./scans:/data/scans
+      - ${HOST_SCAN_DIR:?set HOST_SCAN_DIR}:/data/scans
     restart: unless-stopped
