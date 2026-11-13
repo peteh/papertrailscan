@@ -63,6 +63,33 @@ python -m papertrailscan.discovery --broadcast 192.168.2.255
 
 The reusable APIs are `papertrailscan.EpsonScanJob`, `papertrailscan.discovery.EpsonScannerDiscovery`, and `papertrailscan.button_waiter.EpsonButtonWaiter`.
 
+## Docker
+
+A containerized version of the button-triggered scanner workflow is included. The scanner IP is required; all other settings are optional overrides.
+
+```sh
+SCANNER_IP=192.168.2.56 docker compose up --build
+```
+
+Optional overrides for the other settings:
+
+```sh
+SCANNER_IP=192.168.2.56 \
+OUTPUT_DIR=/data/scans \
+DPI=300 \
+FORMAT=pdf \
+MODE=Color \
+PAPER_SIZE=A4 \
+SOURCE='ADF Front' \
+IDLE_TIMEOUT=10 \
+RECONNECT_INTERVAL=3 \
+SCAN_TIMEOUT=120 \
+VERBOSE=true \
+docker compose up --build
+```
+
+The Compose setup runs the same native CLI command as the host install, so the command-line arguments still work when running natively and the container only supplies environment values for the same options.
+
 ## Tests
 
 Run the unit tests with:
