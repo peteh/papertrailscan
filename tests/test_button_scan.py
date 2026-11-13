@@ -109,6 +109,21 @@ class ButtonTriggeredScanTests(unittest.TestCase):
         self.assertTrue(any("is offline" in message for message in messages))
         self.assertTrue(any("back online" in message for message in messages))
 
+    def test_logs_each_page_scan(self):
+        event1 = ScannerButtonEvent("192.168.2.56", 1)
+        event2 = ScannerButtonEvent("192.168.2.56", 2)
+        waiter = FakeWaiter([True, True, True], [event1, event2, KeyboardInterrupt()])
+        jobs = []
+        clock = [0.0]
+        messages = []
+        app = self.make_app(waiter, jobs, clock, messages)
+
+        with self.assertRaises(KeyboardInterrupt):
+            app.run()
+
+        self.assertTrue(any("Scanned page 1" in message for message in messages))
+        self.assertTrue(any("Scanned page 2" in message for message in messages))
+
 
 if __name__ == "__main__":
     unittest.main()

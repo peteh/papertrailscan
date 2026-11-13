@@ -152,6 +152,8 @@ class ButtonTriggeredScanApplication:
                     continue
                 self._page_count += 1
                 self._last_page_at = self.monotonic()
+                message = f"Scanned page {self._page_count} for {self.scanner_ip}."
+                self.output(message)
                 self._log(f"Added page {self._page_count}; waiting for the next press.")
         finally:
             self._finish_document()

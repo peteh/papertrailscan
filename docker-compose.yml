@@ -1,9 +1,10 @@
 services:
-  papertrailscan-button-scan:
+  papertrailscan:
     build:
       context: .
       dockerfile: Dockerfile
-    network_mode: host
+    container_name: papertrailscan
+#    network_mode: host
     environment:
       SCANNER_IP: ${SCANNER_IP:?set SCANNER_IP}
       OUTPUT_DIR: ${OUTPUT_DIR:-/data/scans}
